@@ -19,6 +19,16 @@
       "likes": 42,
       "story": "Fluffy loves to bounce on rainbow trampolines and eat cotton candy clouds for breakfast!",
       "createdAt": "2024-01-01T11:00:00Z"
+    },
+    {
+      "id": "17540701828748uedx8r0b",
+      "name": "Fluffy McBounceface",
+      "species": "Cloud Critter",
+      "story": "A mysterious cloud creature!",
+      "cloudImage": "blob:http://localhost:8080/bc111745-d647-4ffd-885d-da61817ec12b",
+      "absurdityScore": 84,
+      "likes": 1,
+      "createdAt": "2025-08-01T17:43:10.926Z"
     }
   ]
 }
