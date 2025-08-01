@@ -1,3 +1,4 @@
+// CloudUpload.tsx
 import { Upload, Camera, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,32 +10,23 @@ interface CloudUploadProps {
 }
 
 export const CloudUpload = ({ onImageUpload, isProcessing = false }: CloudUploadProps) => {
-  const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFile = (file: File) => {
+    if (!file.type.startsWith("image/")) return;
+    onImageUpload(file); // Pass the file to Home
+  };
 
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
   };
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    setDragActive(false);
-    
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       handleFile(e.dataTransfer.files[0]);
-    }
-  };
-
-  const handleFile = (file: File) => {
-    if (file.type.startsWith('image/')) {
-      onImageUpload(file);
     }
   };
 
@@ -53,17 +45,14 @@ export const CloudUpload = ({ onImageUpload, isProcessing = false }: CloudUpload
         </p>
       </div>
 
-      <Card 
-        className={`
-          relative border-2 border-dashed p-12 text-center transition-all duration-300 cursor-pointer
-          ${dragActive 
-            ? 'border-primary bg-primary/5 scale-105' 
-            : 'border-border hover:border-primary/50 hover:bg-primary/5'
+      <Card
+        className={`relative border-2 border-dashed p-12 text-center transition-all duration-300 cursor-pointer
+          ${isProcessing
+            ? "pointer-events-none opacity-50"
+            : "hover:border-primary/50 hover:bg-primary/5"
           }
-          ${isProcessing ? 'pointer-events-none opacity-50' : ''}
         `}
         onDragEnter={handleDrag}
-        onDragLeave={handleDrag}
         onDragOver={handleDrag}
         onDrop={handleDrop}
         onClick={handleButtonClick}
@@ -72,13 +61,15 @@ export const CloudUpload = ({ onImageUpload, isProcessing = false }: CloudUpload
           ref={fileInputRef}
           type="file"
           accept="image/*"
-          onChange={(e) => e.target.files?.[0] && handleFile(e.target.files[0])}
           className="hidden"
+          onChange={(e) =>
+            e.target.files?.[0] && handleFile(e.target.files[0])
+          }
         />
-        
+
         {isProcessing ? (
           <div className="space-y-4">
-            <Sparkles className="w-16 h-16 mx-auto text-magic-pink sparkle" />
+            <Sparkles className="w-16 h-16 mx-auto text-magic-pink animate-spin" />
             <div className="space-y-2">
               <h3 className="text-xl font-semibold magic-gradient">
                 🔮 Finding magical creatures...
@@ -94,7 +85,7 @@ export const CloudUpload = ({ onImageUpload, isProcessing = false }: CloudUpload
               <Upload className="w-12 h-12 text-primary/60 cloud-float" />
               <Camera className="w-12 h-12 text-accent cloud-float-delayed" />
             </div>
-            
+
             <div className="space-y-2">
               <h3 className="text-xl font-semibold">
                 Drop your cloud photo here

@@ -3,6 +3,15 @@ import { CloudUpload } from "@/components/CloudUpload";
 import { CritterResult } from "@/components/CritterResult";
 import { toast } from "sonner";
 
+// Base URL for the API - update this to match your backend URL
+const API_BASE_URL = "http://localhost:3001";
+
+// Interface for the AI response
+interface AICritterResponse {
+  name: string;
+  story: string;
+}
+
 // Mock data for demonstration
 const mockCritter = {
   id: "1",
@@ -27,20 +36,85 @@ export const Home = () => {
     setUploadedImage(imageUrl);
     setIsProcessing(true);
     
-    // Mock processing delay
-    setTimeout(() => {
+    try {
+      // Create form data to send the image
+      const formData = new FormData();
+      formData.append('image', file);
+      
+      // Call our AI API endpoint
+      const response = await fetch(`${API_BASE_URL}/api/generate-critter`, {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to process image');
+      }
+      
+      const aiResponse: AICritterResponse = await response.json();
+      
+      // Create a critter with the AI-generated content
       const critter = {
-        ...mockCritter,
+        id: Date.now().toString(),
+        name: aiResponse.name || 'Mystery Cloud Creature',
+        species: 'Cloud Critter',
+        backstory: aiResponse.story || 'This cloud creature is too mysterious for words!',
         cloudImage: imageUrl,
-        // Add some randomization to make it feel more dynamic
-        absurdityScore: Math.floor(Math.random() * 40) + 60,
-        likes: Math.floor(Math.random() * 100),
+        absurdityScore: Math.floor(Math.random() * 40) + 60, // Random score between 60-100
+        likes: 0,
+        discovered: new Date()
       };
       
       setDiscoveredCritter(critter);
-      setIsProcessing(false);
       toast.success("🎉 Cloud critter discovered!");
-    }, 3000);
+    } catch (error) {
+      console.error('Error processing image:', error);
+      toast.error("Failed to process image. Please try again.");
+    } finally {
+      setIsProcessing(false);
+    }
+    const handleImageUpload = async (file: File) => {
+      const imageUrl = URL.createObjectURL(file);
+      setUploadedImage(imageUrl);
+      setIsProcessing(true);
+    
+      try {
+        const formData = new FormData();
+        formData.append("image", file);
+    
+        const response = await fetch(`${API_BASE_URL}/api/generate-critter`, {
+          method: "POST",
+          body: formData,
+        });
+    
+        if (!response.ok) {
+          throw new Error("Failed to process image");
+        }
+    
+        const aiResponse: AICritterResponse = await response.json();
+        console.log("🧠 AI Response:", aiResponse); // 👈 Add this line
+    
+        const critter = {
+          id: Date.now().toString(),
+          name: aiResponse.name || "Mystery Cloud Creature",
+          species: "Cloud Critter",
+          backstory: aiResponse.story || "This cloud creature is too mysterious for words!",
+          cloudImage: imageUrl,
+          absurdityScore: Math.floor(Math.random() * 40) + 60,
+          likes: 0,
+          discovered: new Date(),
+        };
+    
+        setDiscoveredCritter(critter);
+        toast.success("🎉 Cloud critter discovered!");
+      } catch (error) {
+        console.error("Error processing image:", error);
+        toast.error("Failed to process image. Please try again.");
+      } finally {
+        setIsProcessing(false);
+      }
+    };
+    
   };
 
   const handleLike = () => {

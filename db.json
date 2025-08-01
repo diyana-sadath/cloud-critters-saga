@@ -1,0 +1,13 @@
+{
+  "cloudwiki": [
+    {
+      "id": 1,
+      "image_url": "https://example.com/cloud1.jpg",
+      "name": "Fluffy McGoose",
+      "story": "Fluffy McGoose was born from a puff of sky sadness and now honks at airplanes.",
+      "silly_score": 87,
+      "votes": 3,
+      "created_at": "2025-08-01T14:30:00Z"
+    }
+  ]
+}
