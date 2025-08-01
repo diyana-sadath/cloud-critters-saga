@@ -74,7 +74,7 @@ export const Home = () => {
         const prompt = `Look carefully at this cloud image. What animal, creature, or character do you see in the cloud formations? Be creative and imaginative! Based on what you observe in the cloud shapes, create:
 
 1. give a funny apt indian name for the creature you see in the cloud(eg: sathyaki varma, rohith mahesh, diyana sadath,dakshayani etc )
-2. A short, funny backstory about the creature's dark family history, what this creature does in the sky and how it ended up there. creature may be dead or alive.
+2. Give A short, funny backstory about the creature telling how the creature ended up in the clouds and also it can be related to an indian myth or it can be horror, or comedy. Anyway the story should make sense and be creative, it shouldn't be too princess vibe.
 
 Format your response as:
 Name: [creature name]
@@ -192,17 +192,44 @@ Be freakishly accurate and real and creative and scared - you're seeing animals 
     // In a real app, you'd copy the share URL to clipboard
   };
 
+  // Helper function to convert blob URL to base64
+  const convertBlobToBase64 = (blobUrl: string): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      fetch(blobUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        })
+        .catch(reject);
+    });
+  };
+
   const handleSaveToWiki = async () => {
     if (!discoveredCritter) return;
     
     try {
+      // Convert blob URL to base64 if it's a blob URL
+      let cloudImage = discoveredCritter.cloudImage;
+      if (cloudImage.startsWith('blob:')) {
+        try {
+          cloudImage = await convertBlobToBase64(cloudImage);
+        } catch (error) {
+          console.error('Error converting image to base64:', error);
+          toast.error('Failed to process image. Please try again.');
+          return;
+        }
+      }
+
       // Create the data object to send
       const critterData = {
-        id: discoveredCritter.id, // Use the existing critter ID
+        id: discoveredCritter.id,
         name: discoveredCritter.name,
         species: discoveredCritter.species,
-        story: discoveredCritter.backstory, // Note: your Home uses 'backstory', DB uses 'story'
-        cloudImage: discoveredCritter.cloudImage,
+        story: discoveredCritter.backstory,
+        cloudImage: cloudImage, // Now using base64 string
         absurdityScore: discoveredCritter.absurdityScore,
         likes: discoveredCritter.likes,
         createdAt: new Date().toISOString()
