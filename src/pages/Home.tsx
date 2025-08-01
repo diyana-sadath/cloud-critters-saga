@@ -10,6 +10,15 @@ const generateUniqueId = () => {
   return Date.now().toString() + Math.random().toString(36).substr(2, 9);
 };
 
+// Base URL for the API - update this to match your backend URL
+const API_BASE_URL = "http://localhost:3001";
+
+// Interface for the AI response
+interface AICritterResponse {
+  name: string;
+  story: string;
+}
+
 // Mock data for demonstration
 const mockCritter = {
   id: "1",
@@ -30,67 +39,90 @@ export const Home = () => {
   const [isSaved, setIsSaved] = useState(false);
 
   const handleImageUpload = async (file: File) => {
-    // Create a preview URL
     const imageUrl = URL.createObjectURL(file);
     setUploadedImage(imageUrl);
     setIsProcessing(true);
     
-    // Mock processing delay
-    setTimeout(() => {
-      const uniqueId = generateUniqueId(); // Generate ID once
+    try {
+      // Try AI generation first (friend's code)
+      const formData = new FormData();
+      formData.append("image", file);
+      
+      const response = await fetch(`${API_BASE_URL}/api/generate-critter`, {
+        method: "POST",
+        body: formData,
+      });
+      
+      let critterName = "Fluffy McBounceface"; // Fallback
+      let critterStory = "A mysterious cloud creature!"; // Fallback
+      
+      if (response.ok) {
+        const aiResponse: AICritterResponse = await response.json();
+        critterName = aiResponse.name || critterName;
+        critterStory = aiResponse.story || critterStory;
+      }
+      
+      // Create critter with AI data OR fallback data
+      const uniqueId = generateUniqueId();
       const critter = {
-        ...mockCritter,
-        id: uniqueId, // Use the generated ID instead of mockCritter's "1"
+        id: uniqueId,
+        name: critterName,
+        species: "Cloud Critter",
+        backstory: critterStory,
         cloudImage: imageUrl,
-        // Add some randomization to make it feel more dynamic
         absurdityScore: Math.floor(Math.random() * 40) + 60,
-        likes: Math.floor(Math.random() * 100),
+        likes: 0,
+        discovered: new Date()
       };
       
       setDiscoveredCritter(critter);
-      setIsProcessing(false);
       toast.success("🎉 Cloud critter discovered!");
-    }, 3000);
+    } catch (error) {
+      console.error('Error processing image:', error);
+      toast.error("Failed to process image. Please try again.");
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   const handleLike = async () => {
-  if (!discoveredCritter || hasLiked) return;
+    if (!discoveredCritter || hasLiked) return;
 
-  try {
-    // First, make sure the critter is saved to database
-    if (!isSaved) {
-      await handleSaveToWiki();
-      // Wait a moment for the save to complete
-      await new Promise(resolve => setTimeout(resolve, 500));
-    }
+    try {
+      // First, make sure the critter is saved to database
+      if (!isSaved) {
+        await handleSaveToWiki();
+        // Wait a moment for the save to complete
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
 
-    // Now update the likes in the database
-    const response = await fetch(`http://localhost:3001/critters/${discoveredCritter.id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        likes: discoveredCritter.likes + 1 
-      })
-    });
-
-    if (response.ok) {
-      // Update local state only after successful API call
-      setHasLiked(true);
-      setDiscoveredCritter({
-        ...discoveredCritter,
-        likes: discoveredCritter.likes + 1
+      // Now update the likes in the database
+      const response = await fetch(`http://localhost:3001/critters/${discoveredCritter.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          likes: discoveredCritter.likes + 1 
+        })
       });
-      toast.success("❤️ Liked! This critter loves you too!");
-    } else {
-      toast.error("Failed to like critter. Please try again.");
+
+      if (response.ok) {
+        // Update local state only after successful API call
+        setHasLiked(true);
+        setDiscoveredCritter({
+          ...discoveredCritter,
+          likes: discoveredCritter.likes + 1
+        });
+        toast.success("❤️ Liked! This critter loves you too!");
+      } else {
+        toast.error("Failed to like critter. Please try again.");
+      }
+    } catch (error) {
+      console.error('Error liking critter:', error);
+      toast.error("Network error. Please check your connection.");
     }
-  } catch (error) {
-    console.error('Error liking critter:', error);
-    toast.error("Network error. Please check your connection.");
-  }
-};
+  };
 
   const handleShare = () => {
     toast.success("🔗 Sharing link copied to clipboard!");
@@ -103,7 +135,7 @@ export const Home = () => {
     try {
       // Create the data object to send
       const critterData = {
-        id: generateUniqueId(),
+        id: discoveredCritter.id, // Use the existing critter ID
         name: discoveredCritter.name,
         species: discoveredCritter.species,
         story: discoveredCritter.backstory, // Note: your Home uses 'backstory', DB uses 'story'

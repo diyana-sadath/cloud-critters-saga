@@ -1,73 +1,80 @@
-# Welcome to your Lovable project
+# ✨ all the dreams like twinkling stars ✨
 
-## Project info
+☁️ What Is This?
+“all the dreams like twinkling stars” is a gloriously useless web app built for a hackathon celebrating quirky, pointless, and joyful tech.
 
-**URL**: https://lovable.dev/projects/dbc1c26d-1be4-43e4-bd76-14cedd2c46d4
+You take a photo of the clouds.
+We show you the weird animal hiding inside.
+We name it.
+We tell you its origin story (written by an AI that acts like a sugar-high 5-year-old).
 
-## How can I edit this code?
+It's a little bit AI.
+A little bit nonsense.
+And a whole lot of sky magic.
 
-There are several ways of editing your application.
+🧠 What It Does
+☁️ Upload a photo of clouds (or use your phone camera).
 
-**Use Lovable**
+🐙 AI imagines what animal it sees in the clouds.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/dbc1c26d-1be4-43e4-bd76-14cedd2c46d4) and start prompting.
+✏️ Gives it a name like “Sir Puddlewhisk the Third”.
 
-Changes made via Lovable will be committed automatically to this repo.
+📖 Writes a silly backstory for the animal.
 
-**Use your preferred IDE**
+🌐 Adds the animal to the Cloud Lore Wiki — a collection of all weird cloud creatures ever spotted.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+🔥 Leaderboard shows the most ridiculous animals of the day/week — based on user votes or absurdity scores.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+🎨 Tech Stack
+Frontend: React / Next.js (with cloud-themed whimsical UI)
 
-Follow these steps:
+Backend: Supabase or Firebase (for storage + voting)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+AI: OpenAI GPT-4 Vision (to generate name, animal, and story)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Hosting: Vercel or Netlify
 
-# Step 3: Install the necessary dependencies.
-npm i
+📚 Cloud Lore Wiki
+Every cloud animal gets a page in the great skybook of creatures.
+Each entry includes:
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+The original cloud photo
+
+The animal name
+
+The story
+
+A silly score (random, AI-generated, or voted)
+
+You can browse this infinite dream zoo any time.
+
+🏆 Leaderboard
+Because nothing is more serious than the silliest animal of the day.
+Top animals based on upvotes or pure absurdity make the leaderboard.
+
+🚀 Running Locally
+bash
+Copy
+Edit
+git clone https://github.com/your-repo/twinkling-stars
+cd twinkling-stars
+npm install
 npm run dev
-```
+Make sure to:
 
-**Edit a file directly in GitHub**
+Add your API keys for OpenAI / Supabase in a .env.local file
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Set up your database schema if needed (ask us for the SQL!)
 
-**Use GitHub Codespaces**
+🙌 Made With Love By
+You 🫵
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+And the clouds above 🌥️
 
-## What technologies are used for this project?
+And probably a tired AI hallucinating walruses
 
-This project is built with:
+💡 Bonus Notes
+Don’t take this app too seriously. We definitely didn’t.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/dbc1c26d-1be4-43e4-bd76-14cedd2c46d4) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+But also, maybe take a second to lie on the grass and watch the clouds sometime.
+They do look like they’re trying to tell us something.
