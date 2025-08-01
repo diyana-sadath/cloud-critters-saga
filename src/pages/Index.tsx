@@ -1,13 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { Layout } from "@/components/Layout";
+import { Home } from "./Home";
+import { Wiki } from "./Wiki";
+import { Leaderboard } from "./Leaderboard";
 
 const Index = () => {
+  const [currentPage, setCurrentPage] = useState<'home' | 'wiki' | 'leaderboard'>('home');
+
+  const renderCurrentPage = () => {
+    switch (currentPage) {
+      case 'home':
+        return <Home />;
+      case 'wiki':
+        return <Wiki />;
+      case 'leaderboard':
+        return <Leaderboard />;
+      default:
+        return <Home />;
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <Layout currentPage={currentPage} onNavigate={setCurrentPage}>
+      {renderCurrentPage()}
+    </Layout>
   );
 };
 

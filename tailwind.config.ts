@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -51,6 +52,22 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				// Cloud Critters theme colors
+				cloud: {
+					white: 'hsl(var(--cloud-white))',
+					shadow: 'hsl(var(--cloud-shadow))'
+				},
+				sky: {
+					'gradient-start': 'hsl(var(--sky-gradient-start))',
+					'gradient-end': 'hsl(var(--sky-gradient-end))'
+				},
+				magic: {
+					pink: 'hsl(var(--magic-pink))',
+					purple: 'hsl(var(--magic-purple))'
+				},
+				sunshine: {
+					yellow: 'hsl(var(--sunshine-yellow))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
