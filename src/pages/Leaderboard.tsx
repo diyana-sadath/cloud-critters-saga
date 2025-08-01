@@ -1,66 +1,52 @@
-import { Trophy, Medal, Crown, Heart, TrendingUp } from "lucide-react";
+import { Trophy, Medal, Crown, Heart, TrendingUp, Home, BookOpen } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-
-// Mock leaderboard data
-const mockLeaderboard = [
-  {
-    id: "2",
-    name: "Sir Whiskers Von Zoom", 
-    species: "Lightning Cat",
-    cloudImage: "/placeholder.svg",
-    absurdityScore: 95,
-    likes: 78,
-    rank: 1,
-    trend: "up"
-  },
-  {
-    id: "1", 
-    name: "Fluffy McBounceface",
-    species: "Cloud Bunny",
-    cloudImage: "/placeholder.svg", 
-    absurdityScore: 87,
-    likes: 42,
-    rank: 2,
-    trend: "same"
-  },
-  {
-    id: "3",
-    name: "Princess Bubble Giggles",
-    species: "Soap Dragon", 
-    cloudImage: "/placeholder.svg",
-    absurdityScore: 72,
-    likes: 56,
-    rank: 3,
-    trend: "down"
-  },
-  {
-    id: "4",
-    name: "Captain Poof Tornado",
-    species: "Windstorm Hamster",
-    cloudImage: "/placeholder.svg",
-    absurdityScore: 68,
-    likes: 34,
-    rank: 4,
-    trend: "up"
-  },
-  {
-    id: "5", 
-    name: "Lady Sparkle Mist",
-    species: "Rainbow Unicorn",
-    cloudImage: "/placeholder.svg",
-    absurdityScore: 65,
-    likes: 67,
-    rank: 5,
-    trend: "up"
-  }
-];
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export const Leaderboard = () => {
+  const [critters, setCritters] = useState<any[]>([]);
   const [timeframe, setTimeframe] = useState<'daily' | 'weekly' | 'alltime'>('daily');
   const [sortBy, setSortBy] = useState<'absurdity' | 'likes'>('absurdity');
+
+  useEffect(() => {
+    fetchCritters();
+  }, []);
+
+  const fetchCritters = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/critters');
+      const data = await response.json();
+      // Add ranks to the data
+      const sortedData = data
+        .sort((a: any, b: any) => sortBy === 'absurdity' ? b.absurdityScore - a.absurdityScore : b.likes - a.likes)
+        .map((critter: any, index: number) => ({
+          ...critter,
+          rank: index + 1,
+          trend: 'same' // You can implement trend logic later
+        }));
+      setCritters(sortedData);
+    } catch (error) {
+      console.error('Error fetching critters:', error);
+    }
+  };
+
+  const handleVote = async (critterId: number) => {
+    const critter = critters.find(c => c.id === critterId);
+    if (!critter) return;
+    
+    try {
+      await fetch(`http://localhost:3001/critters/${critterId}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ likes: critter.likes + 1 })
+      });
+      fetchCritters(); // Refresh the list
+    } catch (error) {
+      console.error('Error voting:', error);
+    }
+  };
 
   const getRankIcon = (rank: number) => {
     switch (rank) {
@@ -71,7 +57,7 @@ export const Leaderboard = () => {
       case 3:
         return <Medal className="w-6 h-6 text-accent" />;
       default:
-        return <div className="w-6 h-6 flex items-center justify-center text-lg font-bold">#{rank}</div>;
+        return <div className="w-4 h-4 bg-muted-foreground/50 rounded-full" />;
     }
   };
 
@@ -86,12 +72,28 @@ export const Leaderboard = () => {
     }
   };
 
-  const getScoreDisplay = (critter: typeof mockLeaderboard[0]) => {
+  const getScoreDisplay = (critter: any) => {
     return sortBy === 'absurdity' ? `${critter.absurdityScore}%` : `${critter.likes} ❤️`;
   };
 
   return (
     <div className="space-y-6">
+      {/* Navigation Header */}
+      <div className="flex justify-center gap-4 p-4">
+        <Link to="/">
+          <Button variant="outline" className="cloud-button">
+            <Home className="w-4 h-4 mr-2" />
+            Home
+          </Button>
+        </Link>
+        <Link to="/wiki">
+          <Button variant="outline" className="cloud-button">
+            <BookOpen className="w-4 h-4 mr-2" />
+            Cloud Lore Wiki
+          </Button>
+        </Link>
+      </div>
+      
       <div className="text-center space-y-3">
         <h1 className="text-4xl font-bold magic-gradient">
           🏆 Critter Leaderboard
@@ -151,7 +153,7 @@ export const Leaderboard = () => {
 
       {/* Top 3 Podium */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {mockLeaderboard.slice(0, 3).map((critter, index) => (
+        {critters.slice(0, 3).map((critter, index) => (
           <Card 
             key={critter.id} 
             className={`
@@ -202,7 +204,7 @@ export const Leaderboard = () => {
         </div>
         
         <div className="space-y-2">
-          {mockLeaderboard.map((critter, index) => (
+          {critters.map((critter, index) => (
             <div 
               key={critter.id}
               className={`
@@ -237,6 +239,15 @@ export const Leaderboard = () => {
                   <div className="font-bold">{critter.likes}</div>
                   <div className="text-muted-foreground">Likes</div>
                 </div>
+                <Button
+                  onClick={() => handleVote(critter.id)}
+                  variant="outline"
+                  size="sm"
+                  className="cloud-button"
+                >
+                  <Heart className="w-4 h-4 mr-1" />
+                  Vote
+                </Button>
               </div>
             </div>
           ))}

@@ -1,0 +1,24 @@
+{
+  "critters": [
+    {
+      "id": "1",
+      "name": "Sir Whiskers Von Zoom",
+      "species": "Lightning Cat",
+      "cloudImage": "/placeholder.svg",
+      "absurdityScore": 95,
+      "likes": 80,
+      "story": "Once upon a time, Sir Whiskers was the fastest cat in all the clouds! He zooms around making thunder sounds with his tiny paws!",
+      "createdAt": "2024-01-01T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Fluffy McBounceface",
+      "species": "Cloud Bunny",
+      "cloudImage": "/placeholder.svg",
+      "absurdityScore": 87,
+      "likes": 42,
+      "story": "Fluffy loves to bounce on rainbow trampolines and eat cotton candy clouds for breakfast!",
+      "createdAt": "2024-01-01T11:00:00Z"
+    }
+  ]
+}
