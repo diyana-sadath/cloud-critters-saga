@@ -1,96 +1,74 @@
-# ✨ Baadal Baba ✨
+Baadal Baba ☁️🪄
+The all-knowing sky sage who sees what you cannot.
 
-*nee manasil kaanunnath njan maanath kaanum ;)*
+Ever stared at a cloud and confidently declared, “That’s definitely a flying elephant with sunglasses,” only to be met with judgmental stares? Fear not. Baadal Baba is here to bless your imagination with legitimacy and lore. 🧘‍♂️✨
 
-☁️ What Is This?
-Baadal Baba is a gloriously fun web app that brings cloud watching into the digital age.
+🌩️ How It Works (aka Baadal Baba's Ritual)
+Upload a photo of clouds you've spotted.
 
-You take a photo of the clouds.
-We show you the weird animal hiding inside.
-We name it.
-We tell you its origin story (written by an AI that acts like a sugar-high 5-year-old).
+Baadal Baba gazes into it with the power of AI.
 
-It's a little bit AI.
-A little bit nonsense.
-And a whole lot of sky magic.
+He hallucinates an imaginary creature within.
 
-🧠 What It Does
-☁️ Upload a photo of clouds (or use your phone camera).
+Bestows it with a name and a divine backstory.
 
-🐙 AI imagines what animal it sees in the clouds.
+Adds it to the Cloud Lore Wiki – the sacred scroll of silly sky beasts.
 
-✏️ Gives it a name like “Sir Puddlewhisk the Third”.
+If it's truly ridiculous, it might ascend the Leaderboard of Absurdity.
 
-📖 Writes a silly backstory for the animal.
+🔮 The Problem (that doesn't exist)
+People see things in clouds. Always have. But has anyone ever written their names down? Given them histories? Made them famous?
 
-🌐 Adds the animal to the Cloud Lore Wiki — a collection of all weird cloud creatures ever spotted.
+Nope.
 
-🔥 Leaderboard shows the most ridiculous animals of the day/week — based on user votes or absurdity scores.
+🔧 The Solution (that nobody asked for)
+We made Baadal Baba, your cloud-seeing guru.
+He turns your puffy sky blobs into mythical creatures with Malayalam names, tragic movie-style stories, and a shot at sky-fame.
 
 🎨 Tech Stack
-Frontend: React / Next.js (with cloud-themed whimsical UI)
-
-Backend: Supabase or Firebase (for storage + voting)
-
-AI: OpenAI GPT-4 Vision (to generate name, animal, and story)
-
-Hosting: Vercel or Netlify
+Frontend: React + TailwindCSS (for ✨ cloud vibes)
+Backend: Supabase / json-server (for storage and leaderboard magic)
+AI: Gemini (a.k.a. Baba's third eye)
+Hosting: Vercel / Netlify
+Dev Tools: Vite, Sonner, Lucide, dotenv
 
 📚 Cloud Lore Wiki
-Every cloud animal gets a page in the great skybook of creatures.
-Each entry includes:
+The sacred archive.
+Every creature Baadal Baba dreams up gets a place here—with:
 
-The original cloud photo
+Their original cloud pic
 
-The animal name
+A ridiculous name
 
-The story
+A lore-filled backstory
 
-A silly score (random, AI-generated, or voted)
-
-You can browse this infinite dream zoo any time.
+A divine absurdity score
 
 🏆 Leaderboard
-Because nothing is more serious than the silliest animal of the day.
-Top animals based on upvotes or pure absurdity make the leaderboard.
+A true test of silliness.
+Cloud critters battle for glory and honor through upvotes or high absurdity scores. Only the weirdest survive.
 
 🚀 Running Locally
 bash
 Copy
 Edit
-git clone https://github.com/your-repo/twinkling-stars
-cd twinkling-stars
+git clone https://github.com/diyana-sadath/cloud-critters-saga.git
+cd cloud-critters-saga
 npm install
-Run-
 npm run dev
-Make sure to:
-- Add your API keys for Gemini / Supabase in a .env.local file
-- Set up your Supabase schema or db.json if using json-server
+👉 Don’t forget to:
 
-# Project Documentation
-Screenshots
-![Upload Cloud](Add screenshot here)
-Upload a mysterious sky and let the magic begin.
+Add your API keys (Gemini, Supabase) in a .env.local file
 
-![Generated Critter](Add screenshot here)
-Here’s what Baadal imagined: a cloud cow from Kozhikode with a tragic love story.
+Set up your database (Supabase schema or db.json if using json-server)
 
-![Cloud Lore Wiki](Add screenshot here)
-Every critter gets archived into the Cloud Lore Wiki!
+🙌 Made with Blessings by
+👩‍💻 Asiya Muhammed – lore master & leaderboard logic priestess
+👩‍💻 Diyana Sadath – frontend summoner & cloud whisperer
+🧘‍♂️ Baadal Baba – the divine, tired hallucination machine in the sky
 
-Diagrams
+💡 Bonus Wisdom
+“The clouds know things. Baadal Baba just translates.” – probably.
 
-<img width="436" height="847" alt="image" src="https://github.com/user-attachments/assets/f13fab9f-735a-40a2-8ee1-68ca0dfd1a1e" />
-
-Project Demo
-Video
-[Add your demo video link here]
-Watch Baadal name clouds better than your imagination ever could.
-
-# Team Contributions
-Diyana Sadath: Frontend development, AI integration, UI/UX design
-Asiya Muhammed: Leaderboard backend, storytelling logic, wiki saving logic
-
-Made with ❤️ at TinkerHub Useless Projects
-...and possibly by an AI that's been staring at the sky too long 🌥️
-
+So go ahead. Upload a cloud. Let Baadal Baba tell you what it really is.
+Because the sky isn’t the limit. It’s the starting point. 🌥️
