@@ -54,8 +54,8 @@ Here’s what Baadal imagined: a cloud cow from Kozhikode with a tragic love sto
 Every critter gets archived into the Cloud Lore Wiki!
 
 Diagrams
-![Workflow Diagram](Add diagram here)
-From cloud photo ➡️ to AI hallucination ➡️ to internet fame.
+
+<img width="436" height="847" alt="image" src="https://github.com/user-attachments/assets/f13fab9f-735a-40a2-8ee1-68ca0dfd1a1e" />
 
 Project Demo
 Video
