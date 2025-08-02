@@ -1,7 +1,7 @@
 {
-  "name": "cloud-critters-ai",
+  "name": "baadal-baba-ai",
   "version": "1.0.0",
-  "description": "AI backend for Cloud Critters Saga - Generates creative critters from cloud photos",
+  "description": "AI backend for Bhadal - Generates creative cloud creatures from photos",
   "main": "server.js",
   "type": "module",
   "scripts": {

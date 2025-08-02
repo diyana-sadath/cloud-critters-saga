@@ -24,9 +24,12 @@ export const Layout = ({ children, currentPage = 'home', onNavigate }: LayoutPro
       <header className="relative z-10 p-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <Cloud className="w-8 h-8 text-primary soft-glow" />
-              <h1 className="text-3xl font-bold magic-gradient">Cloud Critters</h1>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-3">
+                <Cloud className="w-8 h-8 text-primary soft-glow" />
+                <h1 className="text-3xl font-bold magic-gradient">Baadal Baba</h1>
+              </div>
+              <p className="text-xs text-muted-foreground text-right pr-2">nee manasil kaanunnath njan maanath kaanum ;)</p>
             </div>
             
             {onNavigate && (

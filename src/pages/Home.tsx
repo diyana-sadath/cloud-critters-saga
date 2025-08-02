@@ -75,6 +75,7 @@ export const Home = () => {
 
 1. give a funny apt indian name for the creature you see in the cloud(eg: sathyaki varma, rohith mahesh, diyana sadath,dakshayani etc )
 2. Give A short, funny backstory about the creature telling how the creature ended up in the clouds and also it can be related to an indian myth or it can be horror, or comedy. Anyway the story should make sense and be creative, it shouldn't be too princess vibe.
+3. Also the story should be simple and easy to understand. You can make it tragic too.
 
 Format your response as:
 Name: [creature name]
@@ -357,12 +358,6 @@ Be freakishly accurate and real and creative and scared - you're seeing animals 
           <Button variant="outline" className="cloud-button">
             <Trophy className="w-4 h-4 mr-2" />
             Leaderboard
-          </Button>
-        </Link>
-        <Link to="/wiki">
-          <Button variant="outline" className="cloud-button">
-            <BookOpen className="w-4 h-4 mr-2" />
-            Cloud Lore Wiki
           </Button>
         </Link>
       </div>

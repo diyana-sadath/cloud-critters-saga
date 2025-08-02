@@ -86,12 +86,6 @@ export const Leaderboard = () => {
             Home
           </Button>
         </Link>
-        <Link to="/wiki">
-          <Button variant="outline" className="cloud-button">
-            <BookOpen className="w-4 h-4 mr-2" />
-            Cloud Lore Wiki
-          </Button>
-        </Link>
       </div>
       
       <div className="text-center space-y-3">
@@ -99,7 +93,7 @@ export const Leaderboard = () => {
           🏆 Critter Leaderboard
         </h1>
         <p className="text-xl text-muted-foreground">
-          The most absurd and beloved cloud critters of all time!
+          The most absurd and beloved Bhadal of all time! 
         </p>
       </div>
 

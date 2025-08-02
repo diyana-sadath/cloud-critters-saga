@@ -1,7 +1,9 @@
-# ✨ all the dreams like twinkling stars ✨
+# ✨ Baadal Baba ✨
+
+*nee manasil kaanunnath njan maanath kaanum ;)*
 
 ☁️ What Is This?
-“all the dreams like twinkling stars” is a gloriously useless web app built for a hackathon celebrating quirky, pointless, and joyful tech.
+Baadal Baba is a gloriously fun web app that brings cloud watching into the digital age.
 
 You take a photo of the clouds.
 We show you the weird animal hiding inside.
