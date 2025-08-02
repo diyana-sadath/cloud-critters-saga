@@ -61,22 +61,36 @@ Edit
 git clone https://github.com/your-repo/twinkling-stars
 cd twinkling-stars
 npm install
+Run-
 npm run dev
 Make sure to:
+- Add your API keys for Gemini / Supabase in a .env.local file
+- Set up your Supabase schema or db.json if using json-server
 
-Add your API keys for OpenAI / Supabase in a .env.local file
+# Project Documentation
+Screenshots
+![Upload Cloud](Add screenshot here)
+Upload a mysterious sky and let the magic begin.
 
-Set up your database schema if needed (ask us for the SQL!)
+![Generated Critter](Add screenshot here)
+Here’s what Baadal imagined: a cloud cow from Kozhikode with a tragic love story.
 
-🙌 Made With Love By
-You 🫵
+![Cloud Lore Wiki](Add screenshot here)
+Every critter gets archived into the Cloud Lore Wiki!
 
-And the clouds above 🌥️
+Diagrams
 
-And probably a tired AI hallucinating walruses
+<img width="436" height="847" alt="image" src="https://github.com/user-attachments/assets/f13fab9f-735a-40a2-8ee1-68ca0dfd1a1e" />
 
-💡 Bonus Notes
-Don’t take this app too seriously. We definitely didn’t.
+Project Demo
+Video
+[Add your demo video link here]
+Watch Baadal name clouds better than your imagination ever could.
 
-But also, maybe take a second to lie on the grass and watch the clouds sometime.
-They do look like they’re trying to tell us something.
+# Team Contributions
+Diyana Sadath: Frontend development, AI integration, UI/UX design
+Asiya Muhammed: Leaderboard backend, storytelling logic, wiki saving logic
+
+Made with ❤️ at TinkerHub Useless Projects
+...and possibly by an AI that's been staring at the sky too long 🌥️
+
